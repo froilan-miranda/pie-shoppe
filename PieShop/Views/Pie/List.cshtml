@@ -1,15 +1,7 @@
-@model PieShop.ViewModels.PieListViewModel
+@model PieListViewModel
 @{
-    Layout = null;
+    ViewData["title"] = "Pie List";
 }
-
-<!DOCTYPE html>
-
-<html>
-<head>
-    <title>Nesrine's Pie Shop</title>
-</head>
-<body>
 <h1>@Model.CurrentCategory</h1>
 <div>
     @foreach (var pie in Model.Pies)
@@ -21,5 +13,3 @@
         </div>
     }
 </div>
-</body>
-</html>
