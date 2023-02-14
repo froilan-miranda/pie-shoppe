@@ -1,5 +1,8 @@
-var builder = WebApplication.CreateBuilder(args);
+using PieShop.Models;
 
+var builder = WebApplication.CreateBuilder(args);
+builder.Services.AddScoped<ICategoryRepository, MockCategoryRepository>();
+builder.Services.AddScoped<IPieRepository, MockPieRepository>();
 builder.Services.AddControllersWithViews();
 
 var app = builder.Build();
