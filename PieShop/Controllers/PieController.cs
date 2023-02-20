@@ -15,12 +15,26 @@ public class PieController : Controller
         _categoryRepository = categoryRepository;
     }
     
-    public IActionResult List()
+    public IActionResult List(string category)
     {
+        IEnumerable<Pie> pies;
+        string? currentCategory;
+
+        if (string.IsNullOrEmpty(category))
+        {
+            pies = _pieRepository.AllPies.OrderBy(p => p.PieId);
+            currentCategory = "All Pies";
+        }
+        else
+        {
+            pies = _pieRepository.AllPies.Where(p => p.Category.CategoryName == category).OrderBy(p => p.PieId);
+            currentCategory = _categoryRepository.AllCategories.FirstOrDefault(c => c.CategoryName == category)
+                ?.CategoryName;
+        }
         //ViewBag.Currentcategory = "Cheese cakes";
         //return View(_pieRepository.AllPies);
-        PieListViewModel pieListViewModel = new PieListViewModel(_pieRepository.AllPies, "All pies");
-        return View(pieListViewModel);
+        //PieListViewModel pieListViewModel = new PieListViewModel(_pieRepository.AllPies, "All pies");
+        return View(new PieListViewModel(pies, currentCategory));
     }
 
     public IActionResult Details(int id)
