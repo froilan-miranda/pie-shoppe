@@ -11,6 +11,7 @@ builder.Services.AddSession();
 builder.Services.AddHttpContextAccessor();
 
 builder.Services.AddControllersWithViews();
+builder.Services.AddRazorPages();
 builder.Services.AddDbContext<PieShopDbContext>(options =>
 {
     options.UseSqlite(
@@ -27,5 +28,7 @@ if (app.Environment.IsDevelopment())
 }
 
 app.MapDefaultControllerRoute();
+app.MapRazorPages();
+
 DbInitializer.Seed(app);
 app.Run();
