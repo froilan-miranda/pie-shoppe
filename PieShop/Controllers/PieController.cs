@@ -44,4 +44,9 @@ public class PieController : Controller
             return NotFound();
         return View(pie);
     }
+
+    public IActionResult Search()
+    {
+        return View();
+    }
 }
