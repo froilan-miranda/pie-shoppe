@@ -1,7 +1,8 @@
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 namespace PieShop.Models;
 
-public class PieShopDbContext: DbContext
+public class PieShopDbContext: IdentityDbContext
 {
     public PieShopDbContext(DbContextOptions<PieShopDbContext> options) : base(options)
     {
